@@ -34,12 +34,13 @@ daemon=1
 index=1
 txindex=1
 datacarriersize=8000
-logtimestamps=1" > "/root/.lyra/lyra.conf"
+logtimestamps=1" > "/home/$USER/lyra.conf"
 
 #INSTALL NODEJS
+sudo chown -R $USER /usr/lib/node_modules
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
-npm install pm2 -g
+sudo npm install pm2 -g
 
 #INSTALL MONGODB
 wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
@@ -54,19 +55,19 @@ cp example.env .env
 npm run build
 
 #UPDATING NPM
-npm install -g npm
-npm install -g pm2
+sudo npm install -g npm
+sudo npm install -g pm2
 pm2 install pm2-logrotate
 pm2 set pm2-logrotate:max_size 100M
 pm2 set pm2-logrotate:compress true
 pm2 set pm2-logrotate:rotateInterval '0 * * * *'
 
 #SETTING UP FIREWALL
-ufw allow 22
-ufw deny 42223
-ufw deny 27017
-ufw allow 42222
-ufw enable y
+sudo ufw allow 22
+sudo ufw deny 42223
+sudo ufw deny 27017
+sudo ufw allow 42222
+sudo ufw enable
 
 #SETTING UP NGINX
 sudo apt update
