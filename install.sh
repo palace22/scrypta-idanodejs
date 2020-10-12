@@ -28,6 +28,8 @@ pkill lyrad
 echo "rpcuser=lyrarpc
 rpcpassword=lyrapassword
 rpcallowip=127.0.0.1
+testnet=0
+_addnode=testnet.scryptachain.org
 listen=1
 server=1
 daemon=1
